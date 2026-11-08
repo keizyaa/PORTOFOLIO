@@ -6,7 +6,9 @@ const ribbonItems = ["SkinLy", "EFWAN", "JTIFY", "IVSS Lab"];
 
 // Ukuran foto web
 function webSize(desktop) {
-  return desktop ? "aspect-[2.1/1] w-[300px]" : "aspect-[2.1/1] w-full";
+  return desktop
+    ? "aspect-[2.1/1] w-[300px]"
+    : "mx-auto aspect-[2.1/1] w-full max-w-lg";
 }
 
 function Shot({ project, src, className = "" }) {
@@ -165,11 +167,13 @@ export default function Projects() {
         </h2>
 
         <p className="fade-up mt-5 text-center text-blue-100 [animation-delay:200ms]">
-          <span className="hidden lg:inline">Arahkan kursor ke kartu untuk melihat detail.</span>
-          <span className="lg:hidden">Ketuk kartu untuk melihat detail.</span>
+          <span className="hidden xl:inline">
+            Arahkan kursor ke kartu untuk melihat detail.
+          </span>
+          <span className="xl:hidden">Ketuk kartu untuk melihat detail.</span>
         </p>
 
-        <div className="mt-14 flex flex-col gap-4 lg:h-[470px] lg:flex-row">
+        <div className="mt-14 flex flex-col gap-4 xl:h-[470px] xl:flex-row">
           {projects.map((p, i) => {
             const open = active === i;
             const isMobile = p.layout === "mobile";
@@ -178,7 +182,7 @@ export default function Projects() {
               // Elemen ini berada langsung di dalam baris, jadi flex-grow dipasang di sini
               <div
                 key={p.name}
-                className="fade-up lg:h-full lg:min-w-0 lg:basis-0 lg:transition-[flex-grow] lg:duration-700 lg:ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none"
+                className="fade-up xl:h-full xl:min-w-0 xl:basis-0 xl:transition-[flex-grow] xl:duration-700 xl:ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none"
                 style={{
                   animationDelay: `${300 + i * 150}ms`,
                   flexGrow: open ? 4 : 1,
@@ -188,20 +192,42 @@ export default function Projects() {
                   role="button"
                   tabIndex={0}
                   aria-expanded={open}
-                  onMouseEnter={() => setActive(i)}
-                  onMouseLeave={() => setActive(null)}
-                  onFocus={() => setActive(i)}
-                  onBlur={() => setActive(null)}
-                  onClick={() => setActive(open ? null : i)}
+                  onPointerEnter={(e) => e.pointerType === "mouse" && setActive(i)}
+                  onPointerLeave={(e) => e.pointerType === "mouse" && setActive(null)}
+                  onClick={(e) => {
+                    if (e.nativeEvent.pointerType === "mouse") return;
+                    setActive(open ? null : i);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActive(open ? null : i);
+                    }
+                  }}
                   className={`relative h-full w-full cursor-pointer overflow-hidden rounded-3xl p-6 text-neutral-900 shadow-2xl outline-none transition-colors duration-500 ${
                     open ? "bg-lime-300" : "bg-white"
                   }`}
                 >
                   <div className="flex h-full">
+                    {/* Foto HP (desktop): di kiri */}
+                    {isMobile && (
+                      <div
+                        className={`hidden shrink-0 self-center transition-all duration-500 xl:block ${
+                          open
+                            ? "mr-4 w-[340px] overflow-visible opacity-100 delay-200"
+                            : "mr-0 w-0 overflow-hidden opacity-0"
+                        }`}
+                      >
+                        <div className="px-5 py-8">
+                          <PhoneSet project={p} size="aspect-[9/19] w-[105px]" />
+                        </div>
+                      </div>
+                    )}
+
                     {/* Foto web (desktop): di kiri */}
                     {!isMobile && (
                       <div
-                        className={`hidden shrink-0 self-center overflow-hidden transition-all duration-500 lg:block ${
+                        className={`hidden shrink-0 self-center overflow-hidden transition-all duration-500 xl:block ${
                           open
                             ? "mr-6 w-[300px] opacity-100 delay-200"
                             : "mr-0 w-0 opacity-0"
@@ -226,7 +252,7 @@ export default function Projects() {
 
                       <p
                         className={`mt-3 text-sm leading-relaxed text-neutral-700 ${
-                          open ? "lg:hidden" : ""
+                          open ? "xl:hidden" : ""
                         }`}
                       >
                         {p.summary}
@@ -234,7 +260,7 @@ export default function Projects() {
 
                       {/* Detail desktop */}
                       <div
-                        className={`hidden overflow-hidden text-sm transition-all duration-500 lg:block ${
+                        className={`hidden overflow-hidden text-sm transition-all duration-500 xl:block ${
                           open ? "mt-3 max-h-[280px] opacity-100" : "max-h-0 opacity-0"
                         }`}
                       >
@@ -243,7 +269,7 @@ export default function Projects() {
 
                       {/* Detail layar kecil: terbuka ke bawah */}
                       <div
-                        className={`grid transition-[grid-template-rows] duration-500 lg:hidden ${
+                        className={`grid transition-[grid-template-rows] duration-500 xl:hidden ${
                           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                         }`}
                       >
@@ -277,21 +303,6 @@ export default function Projects() {
                         </span>
                       </div>
                     </div>
-
-                    {/* Tiga foto HP (desktop): di kanan */}
-                    {isMobile && (
-                      <div
-                        className={`hidden shrink-0 self-center transition-all duration-500 lg:block ${
-                          open
-                            ? "ml-4 w-[340px] overflow-visible opacity-100 delay-200"
-                            : "ml-0 w-0 overflow-hidden opacity-0"
-                        }`}
-                      >
-                        <div className="px-5 py-8">
-                          <PhoneSet project={p} size="aspect-[9/19] w-[105px]" />
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
