@@ -89,15 +89,15 @@ export default function TechStack() {
   return (
     <section ref={sectionRef} id="tech-stack" className="relative overflow-x-clip">
       {/* Pita transisi */}
-      <div className="absolute inset-x-0 top-12 z-20 -rotate-[1.5deg] scale-x-110 overflow-hidden bg-lime-300 py-2.5 text-neutral-900 shadow-lg">
+      <div className="absolute inset-x-0 top-20 z-20 -rotate-[1.5deg] scale-x-110 overflow-hidden bg-lime-300 py-2 text-neutral-900 shadow-lg sm:py-2.5">
         <div className="marquee flex w-max whitespace-nowrap">
           {[0, 1].map((n) => (
             <span
               key={n}
-              className="flex shrink-0 items-center gap-6 pr-6 text-sm font-bold uppercase tracking-widest"
+              className="flex shrink-0 items-center gap-4 pr-4 text-xs font-bold uppercase tracking-widest sm:gap-6 sm:pr-6 sm:text-sm"
             >
               {[...ribbonItems, ...ribbonItems].map((t, i) => (
-                <span key={i} className="flex items-center gap-6">
+                <span key={i} className="flex items-center gap-4 sm:gap-6">
                   {t}
                   <span aria-hidden>✦</span>
                 </span>
@@ -110,11 +110,11 @@ export default function TechStack() {
       {/* key berubah => animasi mulai dari awal */}
       <div
         key={playing ? "on" : "off"}
-        className={`mx-auto max-w-6xl px-6 pb-24 pt-36 md:pb-28 md:pt-40 ${
+        className={`mx-auto max-w-6xl px-6 pb-24 pt-40 md:pb-28 md:pt-48 ${
           playing ? "" : "invisible"
         }`}
       >
-        <h2 className="fade-up text-center text-4xl font-extrabold leading-[1.05] tracking-tight md:text-6xl">
+        <h2 className="fade-up text-center text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
           Teknologi yang
           <br />
           <span className="inline-block -rotate-[2deg] bg-lime-300 px-3 text-neutral-900">

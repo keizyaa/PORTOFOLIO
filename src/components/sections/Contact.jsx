@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Download, Mail, MousePointer2 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
-// GANTI dengan datamu
 const EMAIL = "tsabitakeizya@gmail.com";
 
 const contacts = [
@@ -12,7 +11,7 @@ const contacts = [
   { label: "WhatsApp", value: "+62 8989507669", href: "https://wa.me/628989507669", icon: FaWhatsapp },
 ];
 
-const ribbonItems = ["Terbuka untuk magang", "Ayo ngobrol", "Hubungi aku"];
+const ribbonItems = ["Terbuka untuk magang", "Siap berkontribusi", "Kirim pesan"];
 
 export default function Contact() {
   const sectionRef = useRef(null);
