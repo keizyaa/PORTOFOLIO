@@ -1,0 +1,63 @@
+export const projects = [
+  {
+    name: "SkinLy",
+    role: "Project Manager & Full Stack Developer",
+    period: "September 2026 - Sekarang",
+    summary: "Aplikasi mobile deteksi jenis kulit berbasis AI.",
+    points: [
+      "Memimpin tim 5 orang: merencanakan, membagi tugas, dan memantau progres dengan Trello.",
+      "Membangun antarmuka mobile dengan Flutter dan Dart, termasuk alur pemindaian wajah.",
+      "Menyiapkan integrasi model klasifikasi citra CNN (MobileNetV2).",
+    ],
+    tags: ["Flutter", "Dart", "Laravel", "Trello"],
+    layout: "mobile",
+    images: [
+      "skinly-1.svg",
+      "skinly-2.svg",
+      "skinly-3.svg",
+    ],
+    link: "",
+  },
+  {
+    name: "EFWAN",
+    role: "Full Stack Developer",
+    period: "Agustus - September 2026",
+    summary: "Website ticketing dengan halaman admin voucher.",
+    points: [
+      "Membangun halaman admin voucher dengan pencarian, filter, sorting, pagination, dan form tambah/ubah/hapus.",
+      "Mengembangkan API voucher di Laravel: masa berlaku, batas pemakaian, minimal pembelian, dan diskon per tiket.",
+    ],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Laravel"],
+    layout: "web",
+    image: "efwan.png",
+    link: "",
+  },
+  {
+    name: "JTIFY",
+    role: "UI/UX Designer & Front End Developer",
+    period: "Mei - Juni 2026",
+    summary: "Portal informasi lomba, beasiswa, dan workshop.",
+    points: [
+      "Merancang antarmuka di Figma dan mengimplementasikannya menjadi 17 halaman responsif.",
+      "Membuat pencarian dan pagination tanpa muat ulang halaman, plus fitur bookmark dan like lewat REST API.",
+    ],
+    tags: ["Figma", "Blade", "Tailwind CSS", "JavaScript", "REST API"],
+    layout: "web",
+    image: "/jtify.png",
+    link: "",
+  },
+  {
+    name: "IVSS Lab",
+    role: "Front End Developer",
+    period: "Oktober - November 2025",
+    summary: "Redesain website IVSS Laboratory, 15 halaman.",
+    points: [
+      "Mendesain ulang 15 halaman dengan tampilan modern yang nyaman di desktop dan HP.",
+      "Menyusun navbar dan footer yang dipakai ulang di semua halaman, plus galeri foto interaktif dan pencarian berita.",
+    ],
+    tags: ["HTML", "CSS", "JavaScript"],
+    layout: "web",
+    image: "ivss.png",
+    link: "",
+  },
+];
