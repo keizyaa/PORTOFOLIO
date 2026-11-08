@@ -43,7 +43,7 @@ export const projects = [
     ],
     tags: ["Figma", "Blade", "Tailwind CSS", "JavaScript", "REST API"],
     layout: "web",
-    image: "/jtify.png",
+    image: "jtify.png",
     link: "",
   },
   {
