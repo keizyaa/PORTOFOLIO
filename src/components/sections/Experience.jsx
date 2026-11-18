@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, ImageIcon, MousePointer2, Trophy } from "lucide-react";
+import { ArrowUpRight, ImageIcon, Mic, MousePointer2, Trophy } from "lucide-react";
 
 const positions = [
   {
@@ -47,6 +47,22 @@ const award = {
   image: "/bistik.png",
 };
 
+const mc = {
+  file: "master-of-ceremonies.fig",
+  title: "Master of Ceremonies",
+  event: "National Seminar x Workshop by NVIDIA",
+  org: "Himpunan Mahasiswa Teknologi Informasi (HMTI), Politeknik Negeri Malang",
+  period: "9 Nov 2025",
+  theme:
+    "Smart Solutions for a Sustainable Future Economy: Integrating Artificial Intelligence into the Modern Business World",
+  points: [
+    "Served as the Master of Ceremonies for the national seminar and workshop organized by HMTI.",
+    "Guided the program flow and introduced the speakers, Fikri Ghifari (F&D Practitioner) and Esther Irawati (Professor at Institut STTS and Google Developer Expert in AI and Cloud).",
+  ],
+  tags: ["Public speaking", "Event hosting", "Communication"],
+  image: "mc-seminar.jpg"
+};
+
 const tilts = ["-rotate-[1.5deg]", "rotate-[1deg]", "-rotate-[1deg]"];
 
 const ribbonItems = [
@@ -54,6 +70,7 @@ const ribbonItems = [
   "Achievements",
   "General Treasurer",
   "Research Assistant",
+  "Master of Ceremonies",
   "3rd Place BISTIK",
 ];
 
@@ -191,6 +208,100 @@ export default function Experience() {
             </div>
           ))}
         </div>
+
+      {/* Activity: MC at the national seminar */}
+      <div className="fade-up mt-20" style={{ animationDelay: "800ms" }}>
+        <p className="mb-4 text-xs font-semibold tracking-widest text-blue-100">
+          04 / ACTIVITY
+        </p>
+
+        <div className="group relative transition-transform duration-300 ease-out hover:scale-[1.02] motion-reduce:transition-none motion-reduce:hover:scale-100">
+          {/* Selection frame (shown on hover) */}
+          <span className="pointer-events-none absolute -inset-2 border-2 border-lime-300 opacity-0 transition group-hover:opacity-100" />
+          <span className={`${handle} -left-3.5 -top-3.5`} />
+          <span className={`${handle} -right-3.5 -top-3.5`} />
+          <span className={`${handle} -bottom-3.5 -left-3.5`} />
+          <span className={`${handle} -bottom-3.5 -right-3.5`} />
+
+          <div className="relative overflow-hidden rounded-xl bg-neutral-900 shadow-2xl">
+            {/* Figma-style window bar */}
+            <div className="flex items-center gap-2 border-b border-white/10 px-5 py-3">
+              <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+              <span className="ml-3 truncate text-xs text-neutral-500">{mc.file}</span>
+            </div>
+
+            <div className="grid items-center gap-8 p-6 sm:p-8 md:grid-cols-5 md:gap-10 md:p-10">
+              {/* Photo (top on mobile, right on desktop) */}
+              <div className="md:order-2 md:col-span-3">
+                <div className="rotate-2 rounded-lg bg-white p-2 shadow-xl transition duration-300 group-hover:rotate-0 motion-reduce:transition-none">
+                  {mc.image ? (
+                    <img
+                      src={mc.image}
+                      alt="Tsabita Keizya as Master of Ceremonies at the HMTI National Seminar x Workshop"
+                      className="block h-auto w-full rounded"
+                    />
+                  ) : (
+                    <div className="flex aspect-[3/2] w-full flex-col items-center justify-center gap-2 rounded bg-neutral-100 text-neutral-400">
+                      <ImageIcon size={32} />
+                      <span className="text-xs font-semibold">MC photo</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Text */}
+              <div className="md:order-1 md:col-span-2">
+                <Mic size={30} className="text-lime-300" />
+
+                <span className="mt-4 inline-block rounded-full bg-lime-300 px-3 py-1 text-xs font-bold text-neutral-900">
+                  {mc.period}
+                </span>
+
+                <h3 className="mt-4 text-2xl font-extrabold leading-tight tracking-tight text-white md:text-3xl">
+                  {mc.title}
+                </h3>
+                <p className="mt-1 text-sm font-semibold text-neutral-200">{mc.event}</p>
+                <p className="text-sm text-neutral-400">{mc.org}</p>
+                <p className="mt-1 text-xs text-neutral-500">{mc.place}</p>
+
+                <ul className="mt-5 space-y-2.5 text-sm leading-relaxed text-neutral-200">
+                  {mc.points.map((p, i) => (
+                    <li key={i} className="flex gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-lime-300" />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="mt-4 text-xs italic leading-relaxed text-neutral-400">
+                  Theme: {mc.theme}
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {mc.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full bg-white/10 px-3 py-1 text-xs text-neutral-200"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Cursor label */}
+          <div className="absolute -bottom-5 right-8 flex items-end gap-1">
+            <MousePointer2 size={18} className="fill-orange-500 text-orange-500" />
+            <span className="rounded-md bg-orange-500 px-2.5 py-0.5 text-xs font-medium text-white">
+              Host
+            </span>
+          </div>
+        </div>
+      </div>
 
         {/* Achievement: wide card with certificate */}
         <div className="fade-up mt-20" style={{ animationDelay: "900ms" }}>
