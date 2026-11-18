@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ImageIcon } from "lucide-react";
 import { projects } from "../../data/projects";
 
-const ribbonItems = ["SkinLy", "EFWAN", "JTIFY", "IVSS Lab"];
+const ribbonItems = ["SkinLy", "EFWAN", "Vehicle Counting", "JTIFY", "IVSS Lab"];
 
-// Ukuran foto web
+// Web screenshot size
 function webSize(desktop) {
   return desktop
     ? "aspect-[2.1/1] w-[300px]"
@@ -25,7 +25,7 @@ function Shot({ project, src, className = "" }) {
       {img ? (
         <img
           src={img}
-          alt={`Tampilan proyek ${project.name}`}
+          alt={`Preview of ${project.name}`}
           className={`h-full w-full ${
             project.fit === "contain" ? "object-contain" : "object-cover object-top"
           }`}
@@ -34,7 +34,7 @@ function Shot({ project, src, className = "" }) {
         <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-neutral-100 px-2 text-center text-neutral-400">
           <ImageIcon size={24} />
           <span className="text-[10px] font-semibold">
-            {mobile ? "Screenshot HP" : `Screenshot ${project.name}`}
+            {mobile ? "Phone screenshot" : `${project.name} screenshot`}
           </span>
         </div>
       )}
@@ -42,7 +42,7 @@ function Shot({ project, src, className = "" }) {
   );
 }
 
-// Tiga HP berjajar seperti kipas
+// Three phones fanned out side by side
 function PhoneSet({ project, size }) {
   const list = project.images?.length ? project.images : ["", "", ""];
   const pose = ["-rotate-6", "-translate-y-3", "rotate-6"];
@@ -98,7 +98,7 @@ function Detail({ project }) {
           onClick={(e) => e.stopPropagation()}
           className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-neutral-900 underline underline-offset-4"
         >
-          Lihat proyek <ArrowUpRight size={16} />
+          View project <ArrowUpRight size={16} />
         </a>
       )}
     </>
@@ -110,7 +110,7 @@ export default function Projects() {
   const [playing, setPlaying] = useState(false);
   const [active, setActive] = useState(null);
 
-  // Putar animasi saat section terlihat, reset saat keluar layar
+  // Play animations when the section is visible, reset when it leaves the screen
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -133,7 +133,7 @@ export default function Projects() {
 
   return (
     <section ref={sectionRef} id="projects" className="relative overflow-x-clip">
-      {/* Pita transisi */}
+      {/* Transition ribbon */}
       <div className="absolute inset-x-0 top-20 z-20 rotate-[1.5deg] scale-x-110 overflow-hidden bg-lime-300 py-2 text-neutral-900 shadow-lg sm:py-2.5">
         <div className="marquee-reverse flex w-max whitespace-nowrap">
           {[0, 1].map((n) => (
@@ -159,33 +159,31 @@ export default function Projects() {
         }`}
       >
         <h2 className="fade-up text-center text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-          Proyek yang
+          Projects
           <br />
           <span className="inline-block -rotate-[2deg] bg-lime-300 px-3 text-neutral-900">
-            kubuat.
+            I've built.
           </span>
         </h2>
 
         <p className="fade-up mt-5 text-center text-blue-100 [animation-delay:200ms]">
-          <span className="hidden xl:inline">
-            Arahkan kursor ke kartu untuk melihat detail.
-          </span>
-          <span className="xl:hidden">Ketuk kartu untuk melihat detail.</span>
+          <span className="hidden xl:inline">Hover over a card to see details.</span>
+          <span className="xl:hidden">Tap a card to see details.</span>
         </p>
 
-        <div className="mt-14 flex flex-col gap-4 xl:h-[470px] xl:flex-row">
+        <div className="mt-14 flex flex-col gap-4 xl:h-[500px] xl:flex-row">
           {projects.map((p, i) => {
             const open = active === i;
             const isMobile = p.layout === "mobile";
 
             return (
-              // Elemen ini berada langsung di dalam baris, jadi flex-grow dipasang di sini
+              // This element sits directly in the row, so flex-grow is applied here
               <div
                 key={p.name}
                 className="fade-up xl:h-full xl:min-w-0 xl:basis-0 xl:transition-[flex-grow] xl:duration-700 xl:ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none"
                 style={{
                   animationDelay: `${300 + i * 150}ms`,
-                  flexGrow: open ? 4 : 1,
+                  flexGrow: open ? 6 : 1,
                 }}
               >
                 <div
@@ -209,7 +207,7 @@ export default function Projects() {
                   }`}
                 >
                   <div className="flex h-full">
-                    {/* Foto HP (desktop): di kiri */}
+                    {/* Phone photos (desktop): on the left */}
                     {isMobile && (
                       <div
                         className={`hidden shrink-0 self-center transition-all duration-500 xl:block ${
@@ -224,7 +222,7 @@ export default function Projects() {
                       </div>
                     )}
 
-                    {/* Foto web (desktop): di kiri */}
+                    {/* Web photo (desktop): on the left */}
                     {!isMobile && (
                       <div
                         className={`hidden shrink-0 self-center overflow-hidden transition-all duration-500 xl:block ${
@@ -237,7 +235,7 @@ export default function Projects() {
                       </div>
                     )}
 
-                    {/* Teks */}
+                    {/* Text */}
                     <div className="flex min-w-0 flex-1 flex-col">
                       <span className="text-xs font-bold tracking-widest text-neutral-500">
                         {String(i + 1).padStart(2, "0")}
@@ -258,16 +256,16 @@ export default function Projects() {
                         {p.summary}
                       </p>
 
-                      {/* Detail desktop */}
+                      {/* Desktop detail */}
                       <div
                         className={`hidden overflow-hidden text-sm transition-all duration-500 xl:block ${
-                          open ? "mt-3 max-h-[280px] opacity-100" : "max-h-0 opacity-0"
+                          open ? "mt-3 max-h-[340px] opacity-100" : "max-h-0 opacity-0"
                         }`}
                       >
                         <Detail project={p} />
                       </div>
 
-                      {/* Detail layar kecil: terbuka ke bawah */}
+                      {/* Small-screen detail: opens downward */}
                       <div
                         className={`grid transition-[grid-template-rows] duration-500 xl:hidden ${
                           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
@@ -287,10 +285,10 @@ export default function Projects() {
                         </div>
                       </div>
 
-                      {/* Tombol panah */}
+                      {/* Arrow button */}
                       <div className="mt-auto flex items-center justify-between pt-4">
                         <span className="text-sm font-bold">
-                          {open ? "Tutup" : "Lihat detail"}
+                          {open ? "Close" : "View details"}
                         </span>
                         <span
                           className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition duration-500 ${

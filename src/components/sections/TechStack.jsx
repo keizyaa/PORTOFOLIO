@@ -1,41 +1,54 @@
 import { useEffect, useRef, useState } from "react";
 import { Webhook } from "lucide-react";
 import {
-  FaHtml5, FaCss3Alt, FaJs, FaPhp, FaJava, FaReact, FaLaravel,
+  FaHtml5, FaCss3Alt, FaJs, FaPhp, FaJava, FaPython, FaLaravel,
   FaGithub, FaFigma, FaTrello, FaFileWord, FaFileExcel, FaPalette,
+  FaChartBar, FaBrain, FaDatabase, FaTags,
 } from "react-icons/fa";
 import {
   SiTypescript, SiDart, SiNextdotjs, SiTailwindcss, SiFlutter,
-  SiAndroidstudio,
+  SiAndroidstudio, SiMysql, SiPostgresql,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 
 const groups = [
   {
-    title: "Bahasa Pemrograman",
+    title: "Data & Databases",
     items: [
-      { name: "HTML5", icon: FaHtml5, color: "#E34F26" },
-      { name: "CSS3", icon: FaCss3Alt, color: "#1572B6" },
-      { name: "JavaScript", icon: FaJs, color: "#F0B400" },
-      { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-      { name: "PHP", icon: FaPhp, color: "#777BB4" },
-      { name: "Java", icon: FaJava, color: "#E76F00" },
-      { name: "Dart", icon: SiDart, color: "#0175C2" },
-    ],
-  },
-  {
-    title: "Framework & Pustaka",
-    items: [
-      { name: "React.js", icon: FaReact, color: "#1FB6E0" },
-      { name: "Next.js", icon: SiNextdotjs, color: "#111111" },
-      { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
-      { name: "Laravel", icon: FaLaravel, color: "#FF2D20" },
-      { name: "Flutter", icon: SiFlutter, color: "#02569B" },
+      { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+      { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
+      { name: "Power BI", icon: FaChartBar, color: "#E0A800" },
+      { name: "Excel", icon: FaFileExcel, color: "#217346" },
+      { name: "Label Studio", icon: FaTags, color: "#F26B4E" },
+      { name: "Machine Learning", icon: FaBrain, color: "#7C3AED" },
+      { name: "Database Analysis", icon: FaDatabase, color: "#0F766E" },
       { name: "REST API", icon: Webhook, color: "#1d3fe0" },
     ],
   },
   {
-    title: "Perangkat Kerja",
+    title: "Languages",
+    items: [
+      { name: "Python", icon: FaPython, color: "#3776AB" },
+      { name: "JavaScript", icon: FaJs, color: "#F0B400" },
+      { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+      { name: "PHP", icon: FaPhp, color: "#777BB4" },
+      { name: "Dart", icon: SiDart, color: "#0175C2" },
+      { name: "Java", icon: FaJava, color: "#E76F00" },
+      { name: "HTML5", icon: FaHtml5, color: "#E34F26" },
+      { name: "CSS3", icon: FaCss3Alt, color: "#1572B6" },
+    ],
+  },
+  {
+    title: "Frameworks",
+    items: [
+      { name: "Next.js", icon: SiNextdotjs, color: "#111111" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+      { name: "Laravel", icon: FaLaravel, color: "#FF2D20" },
+      { name: "Flutter", icon: SiFlutter, color: "#02569B" },
+    ],
+  },
+  {
+    title: "Tools",
     items: [
       { name: "VS Code", icon: VscVscode, color: "#007ACC" },
       { name: "Android Studio", icon: SiAndroidstudio, color: "#3DDC84" },
@@ -44,12 +57,11 @@ const groups = [
       { name: "Trello", icon: FaTrello, color: "#0052CC" },
       { name: "Canva", icon: FaPalette, color: "#00C4CC" },
       { name: "MS Word", icon: FaFileWord, color: "#2B579A" },
-      { name: "MS Excel", icon: FaFileExcel, color: "#217346" },
     ],
   },
 ];
 
-const ribbonItems = ["React.js", "Next.js", "Tailwind CSS", "Flutter", "Laravel", "Figma"];
+const ribbonItems = ["Python", "SQL", "Power BI", "Label Studio", "Machine Learning", "Laravel"];
 
 const tilts = [-3, 2, -2, 3, -1.5, 2.5, -3.5, 1.5];
 
@@ -69,7 +81,7 @@ export default function TechStack() {
   const sectionRef = useRef(null);
   const [playing, setPlaying] = useState(false);
 
-  // Putar animasi saat section terlihat, reset saat keluar layar
+  // Play animations when the section is visible, reset when it leaves the screen
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -88,7 +100,7 @@ export default function TechStack() {
 
   return (
     <section ref={sectionRef} id="tech-stack" className="relative overflow-x-clip">
-      {/* Pita transisi */}
+      {/* Transition ribbon */}
       <div className="absolute inset-x-0 top-20 z-20 -rotate-[1.5deg] scale-x-110 overflow-hidden bg-lime-300 py-2 text-neutral-900 shadow-lg sm:py-2.5">
         <div className="marquee flex w-max whitespace-nowrap">
           {[0, 1].map((n) => (
@@ -107,27 +119,27 @@ export default function TechStack() {
         </div>
       </div>
 
-      {/* key berubah => animasi mulai dari awal */}
+      {/* key changes => animations restart */}
       <div
         key={playing ? "on" : "off"}
-        className={`mx-auto max-w-6xl px-6 pb-24 pt-40 md:pb-28 md:pt-48 ${
+        className={`mx-auto max-w-5xl px-6 pb-24 pt-40 md:pb-28 md:pt-48 ${
           playing ? "" : "invisible"
         }`}
       >
         <h2 className="fade-up text-center text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-          Teknologi yang
+          Technologies
           <br />
           <span className="inline-block -rotate-[2deg] bg-lime-300 px-3 text-neutral-900">
-            kupakai.
+            I use.
           </span>
         </h2>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
           {groups.map((g, gi) => (
             <div
               key={g.title}
               className="fade-up rounded-2xl bg-neutral-900 p-6 shadow-2xl"
-              style={{ animationDelay: `${250 + gi * 200}ms` }}
+              style={{ animationDelay: `${250 + gi * 150}ms` }}
             >
               <div className="mb-5 flex items-center justify-between gap-3">
                 <span className="rounded-full bg-lime-300 px-4 py-1.5 text-sm font-extrabold text-neutral-900">

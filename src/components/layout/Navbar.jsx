@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
 const links = [
-  { label: "Beranda", id: "home" },
-  { label: "Tentang", id: "about" },
-  { label: "Pengalaman", id: "experience" },
-  { label: "Teknologi", id: "tech-stack" },
-  { label: "Proyek", id: "projects" },
-  { label: "Kontak", id: "contact" },
+  { label: "Home", id: "home" },
+  { label: "About", id: "about" },
+  { label: "Experience", id: "experience" },
+  { label: "Tech-Stack", id: "tech-stack" },
+  { label: "Projects", id: "projects" },
+  { label: "Contact", id: "contact" },
 ];
 
 export default function Navbar() {

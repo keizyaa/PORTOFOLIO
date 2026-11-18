@@ -2,9 +2,13 @@ import { useEffect, useRef, useState } from "react";
 
 const CARD_BLUE = "#0c3fa5";
 
-const achievements = ["Juara 3 BISTIK 2025", "Bendahara Umum HMTI"];
+const highlights = [
+  "GPA 3.70 / 4.00",
+  "3rd Place BISTIK 2025",
+  "General Treasurer HMTI",
+];
 
-const ribbonItems = ["Front End", "UI/UX", "Full Stack", "Open to Internship"];
+const ribbonItems = ["Data Analyst", "Data Engineer", "Full Stack", "Open to Internship"];
 
 export default function About() {
   const sectionRef = useRef(null);
@@ -25,10 +29,10 @@ export default function About() {
       const t = trigger.getBoundingClientRect();
 
       if (s.top >= vh || s.bottom <= 0) {
-        // About sepenuhnya di luar layar: siap diputar ulang
+        // About fully off-screen: ready to replay
         setPlaying(false);
       } else if (t.top < vh * 0.55) {
-        // Atas kartu sudah masuk bagian atas layar: jatuhkan
+        // Top of the card is in view: drop it
         setPlaying(true);
       }
     };
@@ -54,7 +58,7 @@ export default function About() {
       id="about"
       className="grid-bg relative overflow-x-clip"
     >
-      {/* Pita berjalan di atas About */}
+      {/* Running ribbon at the top of About */}
       <div className="absolute inset-x-0 top-12 z-20 -rotate-[1.5deg] scale-x-110 overflow-hidden bg-lime-300 py-2 text-neutral-900 shadow-lg sm:py-2.5">
         <div className="marquee flex w-max whitespace-nowrap">
           {[0, 1].map((n) => (
@@ -73,26 +77,26 @@ export default function About() {
         </div>
       </div>
 
-      {/* Penanda pemicu: di luar div ber-key, sejajar area kartu */}
+      {/* Trigger marker: outside the keyed div, level with the card area */}
       <div
         ref={triggerRef}
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-20 h-px"
       />
 
-      {/* key berubah => elemen dibuat ulang => animasi mulai dari awal */}
+      {/* key changes => element is re-created => animations restart */}
       <div
         key={playing ? "on" : "off"}
         className={`relative mx-auto grid min-h-screen max-w-6xl content-start gap-10 px-6 pb-20 pt-20 md:grid-cols-2 md:gap-6 portrait:md:min-h-0 ${
           playing ? "" : "invisible"
         }`}
       >
-        {/* ID card menggantung (kiri): dipotong tepat di bawah pita */}
+        {/* Hanging ID card (left): clipped just below the ribbon */}
         <div className="self-start [clip-path:inset(10px_-200px_-200px_-200px)]">
           <div className="card-drop">
             <div className="mx-auto w-[300px] origin-top max-[350px]:scale-90">
               <div className="swing">
-                {/* Tali kuning */}
+                {/* Yellow lanyard */}
                 <div className="relative h-[170px]">
                   <div className="absolute inset-x-0 top-0 -bottom-6 overflow-hidden">
                     <span className="absolute bottom-6 left-1/2 h-[230px] w-7 -translate-x-1/2 origin-bottom -rotate-[8deg] bg-yellow-400" />
@@ -101,7 +105,7 @@ export default function About() {
                   <span className="absolute -bottom-4 left-1/2 z-10 h-11 w-6 -translate-x-1/2 rounded-md bg-neutral-300 shadow-md" />
                 </div>
 
-                {/* Kartu */}
+                {/* Card */}
                 <div
                   className="relative overflow-hidden rounded-[22px] shadow-2xl"
                   style={{ backgroundColor: CARD_BLUE }}
@@ -109,7 +113,7 @@ export default function About() {
                   <div className="relative h-[304px] overflow-hidden">
                     <img
                       src="/id-card.jpg"
-                      alt="Tsabita Keizya, Front End Developer"
+                      alt="Tsabita Keizya, Informatics Engineering student"
                       className="-mt-[34px] block w-full"
                     />
                     <span className="absolute left-5 top-5 text-sm font-semibold tracking-wide">
@@ -121,10 +125,10 @@ export default function About() {
                   <div className="flex h-[120px] flex-col justify-between pl-5 pt-3">
                     <div>
                       <p className="text-xs tracking-[0.25em] text-white/70">
-                        TERBUKA UNTUK MAGANG
+                        OPEN TO INTERNSHIP
                       </p>
                       <p className="mt-1 text-sm leading-snug text-white/90">
-                        D-IV Teknik Informatika
+                        D-IV Informatics Engineering
                         <br />
                         Politeknik Negeri Malang
                       </p>
@@ -137,32 +141,33 @@ export default function About() {
           </div>
         </div>
 
-        {/* Teks (kanan) */}
+        {/* Text (right) */}
         <div className="mx-auto flex w-full max-w-lg flex-col justify-center pt-4 md:mx-0 md:max-w-none md:self-center md:pl-4 md:pt-12 lg:pl-8">
           <h2 className="fade-up text-3xl font-extrabold leading-tight [animation-delay:300ms] sm:text-4xl lg:text-5xl">
-            Halo, aku Tsabita Keizya Vanya Putri.
+            Hi, I'm Tsabita Keizya Vanya Putri.
           </h2>
 
           <p
-            lang="id"
+            lang="en"
             className="fade-up mt-5 max-w-lg text-left leading-relaxed text-blue-50 [animation-delay:400ms] lg:text-justify lg:hyphens-auto"
           >
-            Mahasiswa Teknik Informatika yang suka mengubah desain di Figma
-            menjadi tampilan web yang rapi dan nyaman dipakai. Sejauh ini aku
-            sudah membangun portal informasi 17 halaman (JTIFY), halaman admin
-            voucher (EFWAN), dan aplikasi deteksi jenis kulit berbasis AI
-            (SkinLy). Di luar ngoding, aku menjadi Bendahara Umum HMTI dan
-            mengelola anggaran program kerja 5 departemen. Sekarang aku
-            mencari magang sebagai Front End Developer.
+            Informatics Engineering student at Politeknik Negeri Malang,
+            interested in{" "}
+            <strong className="font-bold text-white">data analysis</strong>,{" "}
+            <strong className="font-bold text-white">data engineering</strong>,
+            and full stack development. I label datasets for a{" "}
+            <strong className="font-bold text-white">computer vision</strong>{" "}
+            research project and build web and mobile apps on SQL databases.
+            Currently looking for a Data Analyst or Data Engineer internship.
           </p>
 
           <div className="fade-up mt-6 flex max-w-lg flex-wrap gap-2 [animation-delay:500ms]">
-            {achievements.map((a) => (
+            {highlights.map((h) => (
               <span
-                key={a}
+                key={h}
                 className="rounded-full bg-yellow-400 px-4 py-1.5 text-sm font-medium text-blue-900"
               >
-                {a}
+                {h}
               </span>
             ))}
           </div>
