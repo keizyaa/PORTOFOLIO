@@ -5,8 +5,8 @@ import {
 } from "lucide-react";
 
 const roles = [
-  { name: "Front End", key: "F", icon: MousePointer2 },
-  { name: "UI/UX", key: "U", icon: Hand },
+  { name: "Data Analyst", key: "D", icon: MousePointer2 },
+  { name: "Data Engineer", key: "E", icon: Hand },
   { name: "Full Stack", key: "S", icon: ExternalLink },
 ];
 
